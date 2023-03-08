@@ -101,41 +101,16 @@ def handle_callback_query(call):
         welcome(None, chat_id)
             
     #Quiz-triggered cases
-    elif call.data ==  "a":
+    elif call.data ==  get_correct(yml, user_dict[chat_id].questions.pop()):
         item = types.KeyboardButton('Следующий вопрос')
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True).add(item)
-        if "a"  == get_correct(yml, user_dict[chat_id].questions.pop()):
-            user_dict[chat_id].score += 1
-            mesg = bot.send_message(chat_id, text='Correct!', reply_markup=markup)
-        else:
-            mesg = bot.send_message(chat_id, text='Incorrect', reply_markup=markup)
+        user_dict[chat_id].score += 1
+        mesg = bot.send_message(chat_id, text='Correct!', reply_markup=markup)
         bot.register_next_step_handler(mesg, quiz_iter)
-    elif call.data == "b":
+    else:
         item = types.KeyboardButton('Следующий вопрос')
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True).add(item)
-        if "b"  == get_correct(yml, user_dict[chat_id].questions.pop()):
-            user_dict[chat_id].score += 1
-            mesg = bot.send_message(chat_id, text='Correct!', reply_markup=markup)
-        else:
-            mesg = bot.send_message(chat_id, text='Incorrect', reply_markup=markup)
-        bot.register_next_step_handler(mesg, quiz_iter)
-    elif call.data == "c":
-        item = types.KeyboardButton('Следующий вопрос')
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True).add(item)
-        if "c"  == get_correct(yml, user_dict[chat_id].questions.pop()):
-            user_dict[chat_id].score += 1
-            mesg = bot.send_message(chat_id, text='Correct!', reply_markup=markup)
-        else:
-            mesg = bot.send_message(chat_id, text='Incorrect', reply_markup=markup)
-        bot.register_next_step_handler(mesg, quiz_iter)
-    elif call.data == "d":
-        item = types.KeyboardButton('Следующий вопрос')
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True).add(item)
-        if "d"  == get_correct(yml, user_dict[chat_id].questions.pop()):
-            user_dict[chat_id].score += 1
-            mesg = bot.send_message(chat_id, text='Correct!', reply_markup=markup)
-        else:
-            mesg = bot.send_message(chat_id, text='Incorrect', reply_markup=markup)
+        mesg = bot.send_message(chat_id, text='Incorrect', reply_markup=markup)
         bot.register_next_step_handler(mesg, quiz_iter)
 
 def get_name(message):
