@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:13.3
+    container_name: habr-pg-13.3
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: qwerty
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
