@@ -6,7 +6,7 @@ from yaml_parser import load_yaml, get_correct
 from db_functionality import push_todb
 from telebot import types
 
-bot = telebot.TeleBot("6199892835:AAGIF-GWBgUvRoF4r9laNIaFAlQThygaQxw")
+bot = telebot.TeleBot("<TOKEN>")
 
 user_dict = {}
 
